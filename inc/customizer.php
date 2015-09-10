@@ -1,6 +1,6 @@
 <?php
 /**
- * duena Theme Customizer
+ * duena Theme Customizer.
  *
  * @package duena
  */
@@ -21,6 +21,6 @@ add_action( 'customize_register', 'duena_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function duena_customize_preview_js() {
-	wp_enqueue_script( 'duena_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130304', true );
+	wp_enqueue_script( 'duena_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
 add_action( 'customize_preview_init', 'duena_customize_preview_js' );

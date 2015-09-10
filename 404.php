@@ -1,25 +1,58 @@
 <?php
 /**
- * The template for displaying 404 pages (Not Found).
+ * The template for displaying 404 pages (not found).
+ *
+ * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
  * @package duena
  */
 
 get_header(); ?>
 
-	<div id="primary" class="page404 col-md-12">
-		<div class="hentry">
-			<div class="error404-num">404</div>
-			<div>
-		      <hgroup>
-		        <h1><?php _e( 'Sorry!', 'duena' ); ?></h1>
-		        <h2><?php _e( 'Page Not Found', 'duena' ); ?></h2>
-		      </hgroup>
-		      <h6><?php _e( 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.', 'duena' ); ?></h6>
-		      <p><?php _e( 'Please try using our search box below to look for information on the internet.', 'duena' ); ?></p>
-		      <?php get_search_form(); /* outputs the default Wordpress search form */ ?>
-		    </div>
-		</div>
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+			<section class="error-404 not-found">
+				<header class="page-header">
+					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'duena' ); ?></h1>
+				</header><!-- .page-header -->
+
+				<div class="page-content">
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'duena' ); ?></p>
+
+					<?php get_search_form(); ?>
+
+					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
+
+					<?php if ( duena_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
+					<div class="widget widget_categories">
+						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'duena' ); ?></h2>
+						<ul>
+						<?php
+							wp_list_categories( array(
+								'orderby'    => 'count',
+								'order'      => 'DESC',
+								'show_count' => 1,
+								'title_li'   => '',
+								'number'     => 10,
+							) );
+						?>
+						</ul>
+					</div><!-- .widget -->
+					<?php endif; ?>
+
+					<?php
+						/* translators: %1$s: smiley */
+						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'duena' ), convert_smilies( ':)' ) ) . '</p>';
+						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+					?>
+
+					<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
+
+				</div><!-- .page-content -->
+			</section><!-- .error-404 -->
+
+		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>

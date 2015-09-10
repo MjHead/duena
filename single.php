@@ -1,28 +1,33 @@
 <?php
 /**
- * The Template for displaying all single posts.
+ * The template for displaying all single posts.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
  * @package duena
  */
 
 get_header(); ?>
 
-	<div id="primary" class="col-md-8 <?php echo esc_attr( of_get_option('blog_sidebar_pos') ) ?>">
-		<div id="content" class="site-content" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-		<?php while (have_posts()) : the_post(); 			
+		<?php while ( have_posts() ) : the_post(); ?>
 
-				// The following determines what the post format is and shows the correct file accordingly
-				$format = get_post_format();
-				get_template_part( 'post-formats/'.$format );					
-				if($format == '')
-				get_template_part( 'post-formats/standard' );
-				get_template_part( 'post-formats/post-nav' );
-				get_template_part( 'post-formats/related-posts' );			
-				comments_template('', true);
-			endwhile; // end of the loop. ?>
+			<?php get_template_part( 'template-parts/content', 'single' ); ?>
 
-		</div><!-- #content -->
+			<?php the_post_navigation(); ?>
+
+			<?php
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
+			?>
+
+		<?php endwhile; // End of the loop. ?>
+
+		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
