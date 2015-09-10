@@ -1,6 +1,6 @@
 <?php
 /**
- * duena Theme Customizer.
+ * Duena Theme Customizer.
  *
  * @package duena
  */

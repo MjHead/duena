@@ -1,6 +1,6 @@
 <?php
 /**
- * duena functions and definitions.
+ * Duena functions and definitions.
  *
  * @link https://codex.wordpress.org/Functions_File_Explained
  *
