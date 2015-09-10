@@ -17,6 +17,10 @@ function duena_posted_on() {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 	}
 
+	echo $ololo;
+
+	echo $time_string['test2'];
+
 	if ( 0 == 1 ) {
 		$time_string = $time_string['test2'];
 	}
